@@ -43,13 +43,15 @@ jobs:
       #   run: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       # - name: install bob
       #   run: brew install --cask bob
-      - uses: benchkram/bob-install-action@v1
-        with:
-          version: 0.4.0
-      - run: bob --version
-      - name: install yalc
-        run: yarn global add yalc
-        working-directory: ./react-native-pytorch-core
-      - name: Publish Library Locally
-        run: npx yalc publish
-        working-directory: ./react-native-pytorch-core
+      # - uses: benchkram/bob-install-action@v1
+      #   with:
+      #     version: 0.4.0
+      # - run: bob --version
+      # - name: install yalc
+      #   run: yarn global add yalc
+        # working-directory: ./react-native-pytorch-core
+      # - name: Publish Library Locally
+      #   run: npx yalc publish
+      #   working-directory: ./react-native-pytorch-core
+      - name: download vanilla template
+        run: npx react-native init my-rn-65 --version 0.65
