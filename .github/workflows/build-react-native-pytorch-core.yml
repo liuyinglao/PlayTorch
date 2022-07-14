@@ -40,5 +40,5 @@ jobs:
         with:
             node-version: 16
       - name: Publish Library Locally
-        run: npx yalc public
+        run: npx yalc publish
         working-directory: ./react-native-pytorch-core
