@@ -54,4 +54,7 @@ jobs:
       #   run: npx yalc publish
       #   working-directory: ./react-native-pytorch-core
       - name: download vanilla template
-        run: npx react-native init my-rn-65 --version 0.65
+        run: npx react-native init myrn65 --version 0.65
+      - name: install react-native-pytorch-core
+        run: yarn add file:./../react-native-pytorch-core
+        working-directory: ./myrn65
