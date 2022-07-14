@@ -91,3 +91,35 @@ jobs:
       - name: build android
         run: ./gradlew assembleDebug
         working-directory: ./myrn68/android
+  build_with_rn69:
+    name: Install Library on RN 0.69 Template
+    runs-on: macOS-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup JDK 1.11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+      - uses: actions/setup-node@v3
+        with:
+            node-version: 16
+      - name: download vanilla template
+        run: npx react-native init myrn69 --version 0.69
+      - name: install react-native-pytorch-core
+        run: yarn add file:./../react-native-pytorch-core
+        working-directory: ./myrn69
+      - name: add pickFirst
+        run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
+        working-directory: ./myrn69/android/app
+      - name: import java package
+        run: nl=$'\n' && prior=$'import android.app.Application;' && append=$'import com.facebook.react.bridge.JSIModulePackage; import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        working-directory: ./myrn69/android/app/src/main/java/com/myrn69
+      - name: overide getJSIModulePackage
+        run: nl=$'\n' && prior=$'new ReactNativeHost(this)' && append=$'@Override protected JSIModulePackage getJSIModulePackage(){return new PyTorchCoreJSIModulePackage(); }'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        working-directory: ./myrn69/android/app/src/main/java/com/myrn69
+      - name: build android
+        run: ./gradlew assembleDebug
+        working-directory: ./myrn69/android
