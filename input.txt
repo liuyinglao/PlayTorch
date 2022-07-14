@@ -1,0 +1,5 @@
+Some text
+bar
+foo
+fooxyz${nl}xyz${nl}foo/[option]
+Some stuff

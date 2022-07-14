@@ -58,6 +58,9 @@ jobs:
       - name: install react-native-pytorch-core
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn65
+      - name: add pickFirst
+        run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
+        working-directory: ./myrn65/example/android/app/
       - name: build android
         run: ./gradlew assembleDebug
         working-directory: ./myrn65/android

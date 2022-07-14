@@ -34,11 +34,15 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
+import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;
           // Packages that cannot be autolinked yet can be added manually here, for
           // PyTorchCoreExample:
           // packages.add(new MyReactNativePackage());
+import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;
           packages.add(new PyTorchCorePackage());
+import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;
           return packages;
+import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;
         }
 
         @Override
@@ -61,6 +65,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;
 
     initializeFlipper(
         this,
