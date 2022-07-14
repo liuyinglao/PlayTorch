@@ -39,10 +39,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
             node-version: 16
-      # - name: install homebrew
-      #   run: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      # - name: install bob
-      #   run: brew install --cask bob
+      - name: install homebrew
+        run: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      - name: install bob
+        run: brew install --cask bob
       - name: install yalc
         run: yarn global add yalc
         working-directory: ./react-native-pytorch-core
