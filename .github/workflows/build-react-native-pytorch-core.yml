@@ -60,10 +60,10 @@ jobs:
         working-directory: ./myrn65
       - name: add pickFirst
         run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
-        working-directory: ./myrn65/example/android/app/
+        working-directory: ./myrn65/android/app/
       - name: enlarge jvm capacity
         run: nl=$'\n' && sed -i '' "/FLIPPER_VERSION/a\\${nl}org.gradle.jvmargs=-Xmx8192m${nl}" gradle.properties
-        working-directory: ./myrn65/example/android/
+        working-directory: ./myrn65/android/
       - name: build android
         run: ./gradlew assembleDebug
         working-directory: ./myrn65/android
