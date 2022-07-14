@@ -1,4 +1,4 @@
-name: Build Android Template App
+name: Test Library on RN Version
 
 on:
   push:
