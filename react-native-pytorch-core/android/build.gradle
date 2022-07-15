@@ -122,13 +122,9 @@ dependencies {
   //noinspection GradleDynamicVersion
   extractJNI("com.facebook.fbjni:fbjni:+")
 
-  def buildType = "debug"
-  tasks.all({ task ->
-      if (task.name == "buildCMakeRelease") {
-          buildType = "release"
-      }
-      println task.name
-  })
+
+  // since we only define the release buildType
+  def buildType = "release"
 
   def nodeModules = "${rootDir}/../node_modules"
 
