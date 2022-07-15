@@ -1,0 +1,25 @@
+name: 'initialze react-native vanilla template'
+description: 'Install node and create a react-native template in the root of working directory'
+inputs:
+  react-native-version:  # id of input
+    description: 'the react-native version of template'
+    required: true
+  project-folder-name:
+    description: 'the folder name of the project'
+    required: false
+    default: 'myRN'
+outputs:
+  project-folder-name: # id of the output
+    description: 'the folder name of the project'
+    value: ${{ inputs.project-folder-name }}
+runs:
+  steps:
+    - name: Setup JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - uses: actions/setup-node@v3
+      with:
+          node-version: 16
+    - name: download vanilla template
+      run: npx react-native init ${{ inputs.project-folder-name }} --version ${{ react-native-version }}

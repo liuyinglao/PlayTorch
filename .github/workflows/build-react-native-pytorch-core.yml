@@ -123,17 +123,35 @@ jobs:
       - name: build android
         run: ./gradlew assembleDebug
         working-directory: ./myrn69/android
-  testAction:
-    name: test hello world
+  build_with_rn66:
+    name: Install Library on RN 0.69 Template
     runs-on: macOS-latest
+    env:
+      proj: 'myrn66'
     defaults:
       run:
         working-directory: .
     steps:
       - uses: actions/checkout@v3
-      - id: foo
-        uses: ./.github/actions/hello-world-action
+      - uses: ./.github/actions/init-react-native-vanila-template
         with:
-          who-to-greet: 'Mona the Octocat'
-      - run: echo random-number ${{ steps.foo.outputs.random-number }}
-        shell: bash
+          react-native-version: '0.66'
+          project-folder-name: $proj
+      - name: install react-native-pytorch-core
+        run: yarn add file:./../react-native-pytorch-core
+        working-directory: ./${{steps.}}
+      - name: add pickFirst
+        run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
+        working-directory: ./$proj/android/app
+      - name: enlarge jvm capacity
+        run: nl=$'\n' && sed -i '' "/FLIPPER_VERSION/a\\${nl}org.gradle.jvmargs=-Xmx8192m${nl}" gradle.properties
+        working-directory: ./$proj/android
+      - name: import java package
+        run: nl=$'\n' && prior=$'import android.app.Application;' && append=$'import com.facebook.react.bridge.JSIModulePackage; import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        working-directory: ./$proj/android/app/src/main/java/com/$proj
+      - name: overide getJSIModulePackage
+        run: nl=$'\n' && prior=$'new ReactNativeHost(this)' && append=$'@Override protected JSIModulePackage getJSIModulePackage(){return new PyTorchCoreJSIModulePackage(); }'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        working-directory: ./$proj/android/app/src/main/java/com/$proj
+      - name: build android
+        run: ./gradlew assembleDebug
+        working-directory: ./$proj/android
