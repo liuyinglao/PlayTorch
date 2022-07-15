@@ -48,7 +48,7 @@ jobs:
         working-directory: ./myrn65
       - name: add pickFirst
         env:
-          nl: '\n'
+          nl: $'\n'
           prior: 'android {'
           append: "packagingOptions {pickFirst '**/*.so'}"
         run: sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
@@ -130,7 +130,7 @@ jobs:
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn69
       - name: add pickFirst
-        run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
+        run: nl=$'\n' && prior='android {' && append="packagingOptions {pickFirst '**/*.so'}" && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
         working-directory: ./myrn69/android/app
       - name: import java package
         run: nl=$'\n' && prior=$'import android.app.Application;' && append=$'import com.facebook.react.bridge.JSIModulePackage; import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
