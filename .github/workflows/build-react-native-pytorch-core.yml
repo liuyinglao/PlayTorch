@@ -51,7 +51,6 @@ jobs:
           prior: 'android {'
           append: "packagingOptions {pickFirst '**/*.so'}"
         run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
-        nl=$'\n' && prior='android {' && append="packagingOptions {pickFirst '**/*.so'}" && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
         working-directory: ./myrn65/android/app
       - name: enlarge jvm capacity
         env:
