@@ -49,18 +49,30 @@ jobs:
       - name: add pickFirst
         env:
           nl: '\n'
-          prior: '/android {'
+          prior: 'android {'
           append: "packagingOptions {pickFirst '**/*.so'}"
-        run: nl=$'\n' && sed -i '' "${prior}/a\\${nl}${append}${nl}" build.gradle
+        run: sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
         working-directory: ./myrn65/android/app
       - name: enlarge jvm capacity
-        run: nl=$'\n' && sed -i '' "/FLIPPER_VERSION/a\\${nl}org.gradle.jvmargs=-Xmx8192m${nl}" gradle.properties
+        env:
+          nl: '\n'
+          prior: 'FLIPPER_VERSION'
+          append: "org.gradle.jvmargs=-Xmx8192m"
+        run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" gradle.properties
         working-directory: ./myrn65/android
       - name: import java package
-        run: nl=$'\n' && prior=$'import android.app.Application;' && append=$'import com.facebook.react.bridge.JSIModulePackage; import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        env:
+          nl: '\n'
+          prior: 'import android.app.Application;'
+          append: "import com.facebook.react.bridge.JSIModulePackage; import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;"
+        run: sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
         working-directory: ./myrn65/android/app/src/main/java/com/myrn65
       - name: overide getJSIModulePackage
-        run: nl=$'\n' && prior=$'new ReactNativeHost(this)' && append=$'@Override protected JSIModulePackage getJSIModulePackage(){return new PyTorchCoreJSIModulePackage(); }'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        env:
+          nl: '\n'
+          prior: 'new ReactNativeHost(this)'
+          append: "@Override protected JSIModulePackage getJSIModulePackage(){return new PyTorchCoreJSIModulePackage(); }"
+        run: sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
         working-directory: ./myrn65/android/app/src/main/java/com/myrn65
       - name: build android
         run: ./gradlew assembleDebug
