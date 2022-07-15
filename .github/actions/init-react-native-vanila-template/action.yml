@@ -19,3 +19,4 @@ runs:
           node-version: 16
     - name: download vanilla template
       run: npx react-native init ${{ inputs.project-folder-name }} --version ${{ react-native-version }}
+      shell: bash
