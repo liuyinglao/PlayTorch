@@ -48,31 +48,28 @@ jobs:
         working-directory: ./myrn65
       - name: add pickFirst
         env:
-          nl: $'\n'
           prior: 'android {'
           append: "packagingOptions {pickFirst '**/*.so'}"
-        run: sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
+        run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
+        nl=$'\n' && prior='android {' && append="packagingOptions {pickFirst '**/*.so'}" && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
         working-directory: ./myrn65/android/app
       - name: enlarge jvm capacity
         env:
-          nl: '\n'
           prior: 'FLIPPER_VERSION'
           append: "org.gradle.jvmargs=-Xmx8192m"
         run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" gradle.properties
         working-directory: ./myrn65/android
       - name: import java package
         env:
-          nl: '\n'
           prior: 'import android.app.Application;'
           append: "import com.facebook.react.bridge.JSIModulePackage; import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;"
-        run: sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
         working-directory: ./myrn65/android/app/src/main/java/com/myrn65
       - name: overide getJSIModulePackage
         env:
-          nl: '\n'
           prior: 'new ReactNativeHost(this)'
           append: "@Override protected JSIModulePackage getJSIModulePackage(){return new PyTorchCoreJSIModulePackage(); }"
-        run: sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
+        run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
         working-directory: ./myrn65/android/app/src/main/java/com/myrn65
       - name: build android
         run: ./gradlew assembleDebug
