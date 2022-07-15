@@ -124,7 +124,7 @@ jobs:
         run: ./gradlew assembleDebug
         working-directory: ./myrn69/android
   build_with_rn66:
-    name: Install Library on RN 0.69 Template
+    name: Install Library on RN 0.66 Template
     runs-on: macOS-latest
     env:
       proj: 'myrn66'
