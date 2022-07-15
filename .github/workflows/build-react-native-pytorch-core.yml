@@ -139,7 +139,7 @@ jobs:
           project-folder-name: $proj
       - name: install react-native-pytorch-core
         run: yarn add file:./../react-native-pytorch-core
-        working-directory: ./${{steps.}}
+        working-directory: ./$proj
       - name: add pickFirst
         run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
         working-directory: ./$proj/android/app

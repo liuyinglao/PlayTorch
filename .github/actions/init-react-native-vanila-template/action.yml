@@ -8,10 +8,6 @@ inputs:
     description: 'the folder name of the project'
     required: false
     default: 'myRN'
-outputs:
-  project-folder-name: # id of the output
-    description: 'the folder name of the project'
-    value: ${{ inputs.project-folder-name }}
 runs:
   steps:
     - name: Setup JDK 1.8
