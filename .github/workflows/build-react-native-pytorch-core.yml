@@ -123,3 +123,17 @@ jobs:
       - name: build android
         run: ./gradlew assembleDebug
         working-directory: ./myrn69/android
+  testAction:
+    name: test hello world
+    runs-on: macOS-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: actions/hello-world-composite-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
