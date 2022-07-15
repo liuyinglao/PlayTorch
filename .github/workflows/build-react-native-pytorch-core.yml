@@ -45,7 +45,11 @@ jobs:
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn65
       - name: add pickFirst
-        run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
+        env:
+          nl: '\n'
+          prior: '/android {'
+          append: "packagingOptions {pickFirst '**/*.so'}"
+        run: nl=$'\n' && sed -i '' "${prior}/a\\${nl}${append}${nl}" build.gradle
         working-directory: ./myrn65/android/app
       - name: enlarge jvm capacity
         run: nl=$'\n' && sed -i '' "/FLIPPER_VERSION/a\\${nl}org.gradle.jvmargs=-Xmx8192m${nl}" gradle.properties
