@@ -5,6 +5,7 @@ on:
     branches: [main, dev]
     paths:
       - '.github/workflows/build-react-native-pytorch-core.yml'
+      - '.github/actions/init-react-native-vanila-template/action.yml'
       - 'react-native-pytorch-core/android/**'
       - 'react-native-pytorch-core/cxx/**'
       - 'react-native-template-pytorch-live/template/android/**'
@@ -14,6 +15,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/build-react-native-pytorch-core.yml'
+      - '.github/actions/init-react-native-vanila-template/action.yml'
       - 'react-native-pytorch-core/android/**'
       - 'react-native-pytorch-core/cxx/**'
       - 'react-native-template-pytorch-live/template/android/**'
