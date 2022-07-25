@@ -43,7 +43,7 @@ android {
   buildToolsVersion safeExtGet('PyTorchCore_buildToolsVersion', '30.0.2')
   defaultConfig {
     minSdkVersion safeExtGet('PyTorchCore_minSdkVersion', 21)
-    targetSdkVersion safeExtGet('PyTorchCore_targetSdkVersion', 30)
+    targetSdkVersion safeExtGet('PyTorchCore_targetSdkVersion', 31)
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
