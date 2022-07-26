@@ -2,7 +2,7 @@ name: Build iOS Template App
 
 on:
   push:
-    branches: [main]
+    branches: [main, after_ios_break_2]
     paths:
       - '.github/workflows/build-template-ios.yml'
       - 'react-native-pytorch-core/*.podspec'
