@@ -39,6 +39,8 @@ jobs:
         working-directory: ./react-native-template-pytorch-live/template/ios
     steps:
       - uses: actions/checkout@v2
+      - name: check software to update
+        run: softwareupdate --list
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
