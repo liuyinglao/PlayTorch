@@ -57,6 +57,8 @@ jobs:
         run: pod check || pod install
       - name: Install xcpretty
         run: gem install xcpretty
+      - name: print xcode version
+        run: xcodebuild -version
       - name: Build App
         run: "set -o pipefail && xcodebuild \
           CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ \
