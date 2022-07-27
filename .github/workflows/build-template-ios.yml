@@ -33,7 +33,7 @@ on:
 jobs:
   build:
     name: Build iOS Template App
-    runs-on: macOS-12
+    runs-on: macOS-latest
     defaults:
       run:
         working-directory: ./react-native-template-pytorch-live/template/ios
