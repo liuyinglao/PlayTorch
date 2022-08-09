@@ -136,6 +136,7 @@ dependencies {
       extractJNI(files(rnAAR))
   }
 
+
   extractForNativeBuild("org.pytorch:pytorch_android_lite:${pytorchLiteVersion}")
 
   implementation "androidx.appcompat:appcompat:1.2.0"
