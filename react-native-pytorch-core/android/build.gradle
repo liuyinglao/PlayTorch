@@ -166,7 +166,6 @@ dependencies {
 // fbjni
 // https://github.com/facebookincubator/fbjni/blob/master/docs/android_setup.md
 
-task
 
 task extractAARHeaders {
   doLast {
