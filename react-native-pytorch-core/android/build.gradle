@@ -40,7 +40,7 @@ def safeExtGet(prop, fallback) {
 
 android {
   compileSdkVersion safeExtGet('PyTorchCore_compileSdkVersion', 31)
-  buildToolsVersion safeExtGet('PyTorchCore_buildToolsVersion', '30.0.2')
+  buildToolsVersion safeExtGet('PyTorchCore_buildToolsVersion', '31.0.0')
   defaultConfig {
     minSdkVersion safeExtGet('PyTorchCore_minSdkVersion', 21)
     targetSdkVersion safeExtGet('PyTorchCore_targetSdkVersion', 31)
@@ -122,7 +122,7 @@ dependencies {
   //noinspection GradleDynamicVersion
   extractJNI("com.facebook.fbjni:fbjni:+")
 
-  // def buildType = "release"
+  def buildType = "release"
 
   def nodeModules = "${rootDir}/../node_modules"
 
@@ -131,12 +131,8 @@ dependencies {
       extractJNI(files(rnAAR))
   } else {
       // React Native >= 0.69
-      def rnAarMatcher = "**/react-native/**/*debug.aar"
+      def rnAarMatcher = "**/react-native/**/*${buildType}.aar"
       def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include rnAarMatcher }).singleFile
-      extractJNI(files(rnAAR))
-
-      rnAarMatcher = "**/react-native/**/*release.aar"
-      rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include rnAarMatcher }).singleFile
       extractJNI(files(rnAAR))
   }
 
@@ -169,26 +165,6 @@ dependencies {
 
 // fbjni
 // https://github.com/facebookincubator/fbjni/blob/master/docs/android_setup.md
-
-// task extractRnAARBeforeRN69 {
-//   def nodeModules = "${rootDir}/../node_modules"
-//   def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include "**/**/*.aar" }).singleFile
-//   extractJNI(files(rnAAR))
-// }
-
-// task extractRnAARForRN69Debug {
-//   def nodeModules = "${rootDir}/../node_modules"
-//   def rnAarMatcher = "**/react-native/**/*debug.aar"
-//   def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include rnAarMatcher }).singleFile
-//   configurations.extractJNI(files(rnAAR))
-// }
-
-// task extractRnAARForRN69Release {
-//   def nodeModules = "${rootDir}/../node_modules"
-//   def rnAarMatcher = "**/react-native/**/*release.aar"
-//   def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include rnAarMatcher }).singleFile
-//   configurations.extractJNI(files(rnAAR))
-// }
 
 task extractAARHeaders {
   doLast {
@@ -238,12 +214,4 @@ tasks.whenTaskAdded { task ->
     task.dependsOn(extractJNIFiles)
     task.dependsOn(extractAARForNativeBuild)
   }
-
-  // if (Integer.parseInt(appRnMinorVersion) >= 69 && task.name.contains("generateJsonModelDebug")) {
-  //   task.dependsOn(extractRnAARForRN69Debug)
-  // } else if (Integer.parseInt(appRnMinorVersion) >= 69 && task.name.contains("generateJsonModelRelease")) {
-  //   task.dependsOn(extractRnAARForRN69Release)
-  // } else {
-  //   task.dependsOn(extractRnAARBeforeRN69)
-  // }
 }
