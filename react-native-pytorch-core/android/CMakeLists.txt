@@ -103,12 +103,15 @@ find_library(
         NO_CMAKE_FIND_ROOT_PATH
 )
 
-find_library(
-        REACT_NATIVE_UTILS_LIB
-        reactnativeutilsjni
-        PATHS ${LIBRN_DIR}
-        NO_CMAKE_FIND_ROOT_PATH
-)
+
+if (NOT ${REACT_NATIVE_MINOR_VERSION} EQUAL 68)
+        find_library(
+                REACT_NATIVE_UTILS_LIB
+                reactnativeutilsjni
+                PATHS ${LIBRN_DIR}
+                NO_CMAKE_FIND_ROOT_PATH
+        )
+endif()
 
 find_library(
         PYTORCH_LIBRARY
