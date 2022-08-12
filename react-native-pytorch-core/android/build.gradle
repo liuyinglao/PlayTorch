@@ -40,7 +40,7 @@ def safeExtGet(prop, fallback) {
 
 android {
   compileSdkVersion safeExtGet('PyTorchCore_compileSdkVersion', 31)
-  buildToolsVersion safeExtGet('PyTorchCore_buildToolsVersion', "32.0.0")
+  buildToolsVersion safeExtGet('PyTorchCore_buildToolsVersion', "30.0.2")
   defaultConfig {
     minSdkVersion safeExtGet('PyTorchCore_minSdkVersion', 21)
     targetSdkVersion safeExtGet('PyTorchCore_targetSdkVersion', 31)
