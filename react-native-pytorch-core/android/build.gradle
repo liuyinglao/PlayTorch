@@ -39,7 +39,7 @@ def safeExtGet(prop, fallback) {
 }
 
 def compileSdkVersion = Integer.parseInt(appRnMinorVersion) < 68 ? 30 : 31
-def buildToolsVersion = Integer.parseInt(appRnMinorVersion) < 68 ? "30.0.2" : "31.0.0"
+def buildToolsVersion = Integer.parseInt(appRnMinorVersion) < 68 ? '30.0.2' : '31.0.0'
 
 android {
   compileSdkVersion safeExtGet('PyTorchCore_compileSdkVersion', compileSdkVersion)
