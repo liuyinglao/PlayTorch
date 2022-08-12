@@ -117,7 +117,7 @@ dependencies {
   implementation "org.pytorch:pytorch_android_torchvision_lite:${pytorchLiteVersion}"
 
   //noinspection GradleDynamicVersion
-  api "com.facebook.react:react-native:+"  // From node_modules
+  // api "com.facebook.react:react-native:+"  // From node_modules
 
   //noinspection GradleDynamicVersion
   extractHeaders("com.facebook.fbjni:fbjni:+:headers")
