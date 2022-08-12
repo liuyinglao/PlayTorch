@@ -104,15 +104,6 @@ find_library(
 )
 
 
-if (NOT ${REACT_NATIVE_MINOR_VERSION} EQUAL 68)
-        find_library(
-                REACT_NATIVE_UTILS_LIB
-                reactnativeutilsjni
-                PATHS ${LIBRN_DIR}
-                NO_CMAKE_FIND_ROOT_PATH
-        )
-endif()
-
 find_library(
         PYTORCH_LIBRARY
         pytorch_jni_lite
@@ -136,7 +127,6 @@ target_link_libraries(
         ${PACKAGE_NAME}
         ${LOG_LIB}
         ${REACT_NATIVE_JNI_LIB}
-        ${REACT_NATIVE_UTILS_LIB}
         ${PYTORCH_LIBRARY}
         ${FBJNI_LIBRARY}
         ${JSI_LIB}

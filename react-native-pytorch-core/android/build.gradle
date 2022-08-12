@@ -117,7 +117,7 @@ dependencies {
   implementation "org.pytorch:pytorch_android_torchvision_lite:${pytorchLiteVersion}"
 
   //noinspection GradleDynamicVersion
-  // api "com.facebook.react:react-native:+"  // From node_modules
+  api "com.facebook.react:react-native:+"  // From node_modules
 
   //noinspection GradleDynamicVersion
   extractHeaders("com.facebook.fbjni:fbjni:+:headers")
@@ -131,15 +131,15 @@ dependencies {
   // get the buildType duing configuration stage
   // def buildType = "release"
 
-  // if(Integer.parseInt(appRnMinorVersion)  < 69) {
-  //     def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include "**/**/*.aar" }).singleFile
-  //     extractJNI(files(rnAAR))
-  // } else {
-  //     // React Native 0.69
-  //     def rnAarMatcher = "**/react-native/**/*${buildType}.aar"
-  //     def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include rnAarMatcher }).singleFile
-  //     extractJNI(files(rnAAR))
-  // }
+  if(Integer.parseInt(appRnMinorVersion)  < 69) {
+      def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include "**/**/*.aar" }).singleFile
+      extractJNI(files(rnAAR))
+  } else {
+      // React Native 0.69
+      def rnAarMatcher = "**/react-native/**/*${buildType}.aar"
+      def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include rnAarMatcher }).singleFile
+      extractJNI(files(rnAAR))
+  }
 
   extractForNativeBuild("org.pytorch:pytorch_android_lite:${pytorchLiteVersion}")
 
