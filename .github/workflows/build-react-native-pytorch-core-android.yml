@@ -46,6 +46,12 @@ jobs:
       - name: install react-native-pytorch-core
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn64
+      - name: add pickFirst
+        env:
+          prior: 'android {'
+          append: "packagingOptions {pickFirst '**/*.so'}"
+        run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
+        working-directory: ./myrn64/android/app
       - name: enlarge jvm capacity
         env:
           prior: 'FLIPPER_VERSION'
@@ -79,6 +85,12 @@ jobs:
       - name: install react-native-pytorch-core
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn65
+      - name: add pickFirst
+        env:
+          prior: 'android {'
+          append: "packagingOptions {pickFirst '**/*.so'}"
+        run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
+        working-directory: ./myrn65/android/app
       - name: enlarge jvm capacity
         env:
           prior: 'FLIPPER_VERSION'
@@ -112,6 +124,12 @@ jobs:
       - name: install react-native-pytorch-core
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn66
+      - name: add pickFirst
+        env:
+          prior: 'android {'
+          append: "packagingOptions {pickFirst '**/*.so'}"
+        run: nl=$'\n' && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
+        working-directory: ./myrn66/android/app
       - name: enlarge jvm capacity
         env:
           prior: 'FLIPPER_VERSION'
@@ -184,6 +202,9 @@ jobs:
       - name: install react-native-pytorch-core
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn68
+      - name: add pickFirst
+        run: nl=$'\n' && sed -i '' "/android {/a\\${nl}packagingOptions {pickFirst '**/*.so'}${nl}" build.gradle
+        working-directory: ./myrn68/android/app
       - name: build android debug
         run: ./gradlew assembleDebug
         working-directory: ./myrn68/android
@@ -211,6 +232,9 @@ jobs:
       - name: install react-native-pytorch-core
         run: yarn add file:./../react-native-pytorch-core
         working-directory: ./myrn69
+      - name: add pickFirst
+        run: nl=$'\n' && prior='android {' && append="packagingOptions {pickFirst '**/*.so'}" && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
+        working-directory: ./myrn69/android/app
       - name: build android debug
         run: ./gradlew assembleDebug
         working-directory: ./myrn69/android
