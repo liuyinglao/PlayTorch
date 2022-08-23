@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, dev5]
     paths:
-      - '.github/workflows/build-react-native-pytorch-core.yml'
+      - '.github/workflows/build-react-native-pytorch-core-android.yml'
       - '.github/actions/init-react-native-vanila-template/action.yml'
       - 'react-native-pytorch-core/android/**'
       - 'react-native-pytorch-core/cxx/**'
