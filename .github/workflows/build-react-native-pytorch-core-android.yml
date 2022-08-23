@@ -76,6 +76,7 @@ jobs:
       - name: build android release
         run: ./gradlew assembleRelease
         working-directory: ./myrn64/android
+
   build_with_rn65:
     name: Install Library on RN 0.65 Template
     runs-on: macOS-latest
@@ -126,6 +127,7 @@ jobs:
       - name: build android release
         run: ./gradlew assembleRelease
         working-directory: ./myrn65/android
+
   build_with_rn66:
     name: Install Library on RN 0.66 Template
     runs-on: macOS-latest
@@ -176,6 +178,7 @@ jobs:
       - name: build android release
         run: ./gradlew assembleRelease
         working-directory: ./myrn66/android
+
   build_with_rn67:
     name: Install Library on RN 0.67 Template
     runs-on: macOS-latest
@@ -226,7 +229,8 @@ jobs:
       - name: build android release
         run: ./gradlew assembleRelease
         working-directory: ./myrn67/android
-    build_with_rn68:
+
+  build_with_rn68:
     name: Install Library on RN 0.68 Template
     runs-on: macOS-latest
     defaults:
@@ -261,6 +265,7 @@ jobs:
       - name: build android release
         run: ./gradlew assembleRelease
         working-directory: ./myrn68/android
+
   build_with_rn69:
     name: Install Library on RN 0.69 Template
     runs-on: macOS-latest
