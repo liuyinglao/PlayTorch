@@ -235,12 +235,7 @@ jobs:
       - name: add pickFirst
         run: nl=$'\n' && prior='android {' && append="packagingOptions {pickFirst '**/*.so'}" && sed -i '' "/${prior}/a\\${nl}${append}${nl}" build.gradle
         working-directory: ./myrn69/android/app
-      - name: import java package
-        run: nl=$'\n' && prior=$'import android.app.Application;' && append=$'import com.facebook.react.bridge.JSIModulePackage; import org.pytorch.rn.core.jsi.PyTorchCoreJSIModulePackage;'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
-        working-directory: ./myrn69/android/app/src/main/java/com/myrn69
-      - name: overide getJSIModulePackage
-        run: nl=$'\n' && prior=$'new ReactNativeHost(this)' && append=$'@Override protected JSIModulePackage getJSIModulePackage(){return new PyTorchCoreJSIModulePackage(); }'  && sed -i '' "/${prior}/a\\${nl}${append}${nl}" MainApplication.java
-        working-directory: ./myrn69/android/app/src/main/java/com/myrn69
+
       - name: build android debug
         run: ./gradlew assembleDebug
         working-directory: ./myrn69/android
